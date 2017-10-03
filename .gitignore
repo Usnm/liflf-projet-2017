@@ -1,0 +1,4 @@
+
+*.png
+
+src/cmake-build-debug/*
