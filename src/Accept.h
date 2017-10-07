@@ -18,6 +18,7 @@ void Fermeture(const sAutoNDE& at, etatset_t& e);
 etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c);
 
 ////////////////////////////////////////////////////////////////////////////////
+bool Accept_rec(const sAutoNDE& at, std::string str, int position_courante);
 
 bool Accept(const sAutoNDE& at, std::string str);
 
