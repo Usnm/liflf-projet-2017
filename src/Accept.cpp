@@ -5,13 +5,25 @@
 
 #include "Accept.h"
 #include "FA_tools.h"
-
+using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 
 bool EstDeterministe(const sAutoNDE& at){
-  //TODO définir cette fonction
+    bool estDeter = true;
+    std::cout << "----- " << at.trans << std::endl;
+    for (int i=0; i<at.trans.size(); i++ )
+    {
+        for (int j=0; j<at.trans[i].size(); j++ )
+        {
 
-  return true;
+            if(at.trans[i][j].empty()){
+                estDeter = false;
+            }
+
+        }
+    }
+    std::cout << "est Deterministe ? " << estDeter << std::endl;
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +45,8 @@ etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c){
 
 ////////////////////////////////////////////////////////////////////////////////
 ///bin\Debug\liflf-projet-2017.exe -acc exemples/AD1.txt ab//////
-bool Accept_rec(const sAutoNDE& at, std::string str, int position_courante){
+bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
+
     bool accepter = false;
     if(str.compare("") != 0){
         //std::cout << "trans : " << at << std::endl;
@@ -43,11 +56,11 @@ bool Accept_rec(const sAutoNDE& at, std::string str, int position_courante){
         for (int i=0; i<at.trans[position_courante].size(); i++ )
         {
             //etat_t deplacements_possibles = i;
-            std::string deplacement(1,(char)(i%(122-97+1)+97));//Transformation ASCII
+            string deplacement(1,(char)(i%(122-97+1)+97));//Transformation ASCII
             //std::cout << "test test  : " << deplacement << " dplcmt : str " << str[0] << std::endl;
             if(deplacement.compare(0,1, str, 0,1) == 0){//compare les char de 0 à 1 pour deplacement et de 0 à 1 pour str
                 //std::cout << "--- : " << deplacement << " dplcmt : str " << str[0] << std::endl;
-                for (std::set<etat_t>::iterator k = at.trans[position_courante][i].begin(); k != at.trans[position_courante][i].end(); k++) {
+                for (set<etat_t>::iterator k = at.trans[position_courante][i].begin(); k != at.trans[position_courante][i].end(); k++) {
                    etat_t element = *k;
                    accepter = Accept_rec(at, str.erase(0,1),element);
                 }
@@ -55,7 +68,7 @@ bool Accept_rec(const sAutoNDE& at, std::string str, int position_courante){
             //std::cout << "deplacements_possibles : " << deplacement << " => " << i << std::endl;
         }
     }else{
-       for (std::set<etat_t>::iterator f = at.finaux.begin(); f != at.finaux.end(); f++) {
+       for (set<etat_t>::iterator f = at.finaux.begin(); f != at.finaux.end(); f++) {
             etat_t element = *f;
             if(position_courante == element){
                 accepter = true;
@@ -64,7 +77,8 @@ bool Accept_rec(const sAutoNDE& at, std::string str, int position_courante){
     }
     return accepter;
 }
-bool Accept(const sAutoNDE& at, std::string str){
+bool Accept(const sAutoNDE& at, string str){
+    EstDeterministe(at);
     return Accept_rec(at, str, at.initial);
 }
 
