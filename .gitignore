@@ -1,23 +1,10 @@
 
 *.png
-
-src/cmake-build-debug/*
-<<<<<<< HEAD
-
 *.cbp
-bin/Debug/liflf-projet-2017.exe
+*.o
+obj/Debug/src/*.o
+*.exe
 liflf-projet-2017.depend
-obj/Debug/src/Accept.o
-obj/Debug/src/Determinize.o
-obj/Debug/src/Equivalence.o
-obj/Debug/src/ExpressionRationnelle.o
-obj/Debug/src/FA_main.o
-obj/Debug/src/FA_tools.o
-obj/Debug/src/lex.yy.o
-obj/Debug/src/Minimize.o
-obj/Debug/src/parser.tab.o
-obj/Debug/src/ToGraph.o
-=======
-liflf-projet-2017.cbp
->>>>>>> master
+src/.idea/workspace.xml
 liflf-projet-2017.layout
+liflf-projet-2017.cbp
