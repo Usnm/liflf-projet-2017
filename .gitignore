@@ -2,3 +2,5 @@
 *.png
 
 src/cmake-build-debug/*
+
+src/.idea/workspace.xml
