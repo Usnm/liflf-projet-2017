@@ -1,6 +1,10 @@
 
 *.png
-
-src/cmake-build-debug/*
-
+*.cbp
+*.o
+obj/Debug/src/*.o
+*.exe
+liflf-projet-2017.depend
 src/.idea/workspace.xml
+liflf-projet-2017.layout
+liflf-projet-2017.cbp
