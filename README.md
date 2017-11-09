@@ -1,15 +1,20 @@
-Rendu du projet LIIFLC Version 2017-2018
+Rendu du projet LIIFLC Version 1.0 2017-2018
 ================================
 
-PERRIN   Thibaud  #123456  
+PERRIN   Thibaud  #1707841  
 KACED    Jayson   #1710753
+
+
+Sujet du projet :  
+--------------------
+L'objectif de ce TP est de réaliser un programme qui prend en entrée un automate à états finis non déterministe dont la description est lue dans un fichier, qui teste si un mot donné est accepté par cet automate, et qui déterminise cet automate.  
 
 Voir http://liris.cnrs.fr/sylvain.brandel/wiki/doku.php?id=ens:liflf:projet
 
 Contenu de l'archive
 --------------------
 
-README.txt      ce fichier
+LISEZMOI.txt      ce fichier
 Makefile          cibles 
                     all (par défaut) : exécutable principal
                     parser : flex et bison pour le parser d'expression rationnelles
