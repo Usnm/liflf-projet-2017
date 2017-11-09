@@ -27,7 +27,7 @@ src/              fichiers sources C++
 
 Utilisation du programme ./ndet :
 --------------------------
-**-acc ou -accept Input Word :*  
+__-acc ou -accept Input Word :__  
 	 détermine si le mot Word est accepté par l'automate Input  
 -det ou -determinize Input Output [-g] :  
 	 déterminise l'automate Input, écrit le résultat dans Output  
