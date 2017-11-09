@@ -14,7 +14,7 @@ Voir http://liris.cnrs.fr/sylvain.brandel/wiki/doku.php?id=ens:liflf:projet
 Contenu de l'archive
 --------------------
 
-LISEZMOI.txt      ce fichier
+READLE.md      ce fichier
 Makefile          cibles 
                     all (par défaut) : exécutable principal
                     parser : flex et bison pour le parser d'expression rationnelles
@@ -27,7 +27,7 @@ src/              fichiers sources C++
 
 Utilisation du programme ./ndet :
 --------------------------
--acc ou -accept Input Word :  
+**-acc ou -accept Input Word :*  
 	 détermine si le mot Word est accepté par l'automate Input  
 -det ou -determinize Input Output [-g] :  
 	 déterminise l'automate Input, écrit le résultat dans Output  
