@@ -1,17 +1,20 @@
-# liflf-projet-2017
-
-Rendu du projet LIIFLC 2017-2018
+Rendu du projet LIIFLC Version 1.0 2017-2018
 ================================
 
-BRANDON   Romuald   #123456
-THIEL     Sylvain   #456789
+PERRIN   Thibaud  #1707841  
+KACED    Jayson   #1710753
+
+
+Sujet du projet :  
+--------------------
+L'objectif de ce TP est de réaliser un programme qui prend en entrée un automate à états finis non déterministe dont la description est lue dans un fichier, qui teste si un mot donné est accepté par cet automate, et qui déterminise cet automate.  
 
 Voir http://liris.cnrs.fr/sylvain.brandel/wiki/doku.php?id=ens:liflf:projet
 
 Contenu de l'archive
 --------------------
 
-LISEZMOI.txt      ce fichier
+READLE.md      ce fichier
 Makefile          cibles 
                     all (par défaut) : exécutable principal
                     parser : flex et bison pour le parser d'expression rationnelles
@@ -21,6 +24,25 @@ exemples/         exemples d'automates :
                     ND = Non Déterministe,
                     NDE = Non Déterministe avec transitions spontanées
 src/              fichiers sources C++
+
+Utilisation du programme ./ndet :
+--------------------------
+__-acc ou -accept Input Word :__  
+	 détermine si le mot Word est accepté par l'automate Input  
+__-det ou -determinize Input Output [-g] :__  
+	 déterminise l'automate Input, écrit le résultat dans Output  
+__-aut2expr ou automate2expressionrationnelle Input :__  
+	 calcule l'expression rationnelle correspondant à l'automate Input et l'affiche sur la sortie standard
+__-min ou -minimisation Input Output [-g] :__  
+	 construit l'automate standard correspondant à Input, écrit le résultat dans Output  
+__-pequ ou -pseudo_equivalent Input1 Intput2 size :__  
+	 détermine si les deux automates Input1 et Input2 sont pseudo-équivalents par comparaison mot par mot de longueur < à size  
+__-equ ou -equivalent Input1 Intput2 :__  
+	 détermine si les deux automates Input1 et Input2 sont équivalents par minimisation et comparaison des tables de transition  
+__-nop ou -no_operation Input Output [-g] :__  
+	 ne fait rien, recopie juste l'entrée dans Output  
+__-g :__  
+	 paramètre optionnel pour avoir une sortie au format Graphviz dans Output  
 
 
 Documentation de référence
