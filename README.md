@@ -14,16 +14,16 @@ Voir http://liris.cnrs.fr/sylvain.brandel/wiki/doku.php?id=ens:liflf:projet
 Contenu de l'archive
 --------------------
 
-READLE.md      ce fichier
-Makefile          cibles 
-                    all (par défaut) : exécutable principal
-                    parser : flex et bison pour le parser d'expression rationnelles
-                    clean et cleanparser : pour le nettoyage
-exemples/         exemples d'automates :
-                    D = Déterministe,
-                    ND = Non Déterministe,
-                    NDE = Non Déterministe avec transitions spontanées
-src/              fichiers sources C++
+* __README.md__ ce fichier
+* __Makefile__          cibles 
+	* all (par défaut) : exécutable principal
+	* parser : flex et bison pour le parser d'expression rationnelles
+	* clean et cleanparser : pour le nettoyage
+* __exemples/__ exemples d'automates :
+	* D = Déterministe,
+	* ND = Non Déterministe,
+	* NDE = Non Déterministe avec transitions spontanées
+* __src/__ fichiers sources C++
 
 Utilisation du programme ./ndet :
 --------------------------
