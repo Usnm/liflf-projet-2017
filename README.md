@@ -4,6 +4,7 @@ Rendu du projet LIIFLC Version 1.0 2017-2018
 PERRIN   Thibaud  #1707841  
 KACED    Jayson   #1710753
 
+__Université Claube Bernard Lyon 1__
 
 Sujet du projet :  
 --------------------
@@ -53,10 +54,9 @@ http://www.cplusplus.com/reference/
 Commentaires
 ------------
 
-Cet exemple d'archive est fournie aux étudiants comme projet de départ pde l'UE LIFLC 2017-2018
+Cet archive hérite d'une archive fournie aux étudiants comme projet de départ pde l'UE LIFLC 2017-2018
 
 Pour utiliser la sortie graphique, utilisez le package graphviz https://doc.ubuntu-fr.org/graphviz
-
 
 Mettre ici les commentaires éventuels des étudiants.
 Tous les warnings, info résiduels doivent être justifiés ici.
