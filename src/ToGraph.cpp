@@ -1,9 +1,8 @@
-/**
+/*!
  * \file ToGrap.cpp
  * \brief Générateur de fichier GraphViz
  * \author Jayson KACED
  * \version 1
- * \date 9 novembre 2017
  *
  * Contient la fonction ToGraph qui permet de générer un fichier GraphViz
  * selon les caractéristiques de l'automate d'étude.
@@ -20,13 +19,12 @@
 using namespace std;
 
 
-/**
- * \fn bool ToGraph(sAutoNDE& at, string path)
+/*!
  * \brief Fonction de génération de fichier GraphViz (.gv)
  *
  * \param at Automate d'étude
  * \param path Chemin du fichier .gv
- * \return true si génération réussie, false sinon.
+ * \return VRAI si génération réussie, FAUX sinon.
  */
 bool ToGraph(sAutoNDE& at, string path){
 

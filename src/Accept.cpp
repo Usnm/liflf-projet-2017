@@ -1,16 +1,33 @@
-//******************************************************************************
+/**
+ * \file Accept.cpp
+ * \brief Programme de tests.
+ * \author Thibaud PERRIN & Jayson KACED
+ * \version 1
+ *
+ * Ensemble de fonctions pour vérifier le déterminisme d'un automate,
+ * la fermeture d'un automate, le delta suivant un symbole donnée ainsi que
+ * l'acceptation par l'automate d'un mot donné w
+ *
+ */
 
 #include <iostream>
 #include <algorithm>
 
 #include "Accept.h"
 #include "FA_tools.h"
-using namespace std;
-////////////////////////////////////////////////////////////////////////////////
 
+using namespace std;
+
+/*!
+ * \brief Verification de déterminisme
+ *
+ * Fonction d'indication sur la détermination d'un automate.
+ *
+ * \param at Automate d'étude
+ * \return VRAI si l'automate at est déterministe, FALSE sinon.
+ */
 bool EstDeterministe(const sAutoNDE& at){
     bool estDeter = true;
-
 
     for(int nbe = 0; nbe < at.nb_etats; nbe++){
 
@@ -38,8 +55,15 @@ bool EstDeterministe(const sAutoNDE& at){
     return estDeter;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
+/*!
+ * \brief Fermeture d'un ensemble
+ *
+ * Fonction qui ajoute à l'ensemble d'états e
+ * tous ceux qui sont accessibles via des transitions spontanées
+ *
+ * \param at Automate d'étude
+ * \param e ensemble d'états
+ */
 void Fermeture(const sAutoNDE& at, etatset_t& e){
   //TODO définir cette fonction
     etatset_t::iterator itEt, itEps;
@@ -63,8 +87,18 @@ void Fermeture(const sAutoNDE& at, etatset_t& e){
     }while(!tmp1.empty());
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/* renvoie l'ensemble des états accessibles depuis au moins un des états du paramètre e; */
+/*!
+ * \brief Delta d'un ensemble
+ *
+ * Fonction qui renvoie l'ensemble des états accessibles
+ * depuis au moins un des états du paramètre e;
+ *
+ * \param at Automate d'étude
+ * \param e ensemble d'états
+ * \param c symbole donné
+ *
+ * \return r ensemble des états accessibles
+ */
 etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c){
   //TODO définir cette fonction
   etatset_t r;
@@ -92,6 +126,18 @@ etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c){
 ////////////////////////////////////////////////////////////////////////////////
 ///bin\Debug\liflf-projet-2017.exe -acc exemples/AD1.txt ab//////
 
+/*!
+ * \brief Acceptation d'un mot
+ *
+ * Fonction qui indique l'acceptation d'un mot donné
+ * pour l'automate courant - mode récursif
+ *
+ * \param at Automate d'étude
+ * \param str mot donné
+ * \param position_courante
+ *
+ * \return VRAI si le mot est accepté, FAUX sinon
+ */
 bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
 
     bool accepter = false;
@@ -132,6 +178,17 @@ bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
     return accepter;
 }
 
+/*!
+ * \brief Acceptation d'un mot
+ *
+ * Fonction qui indique l'acceptation d'un mot donné
+ * pour l'automate courant - fonction appel pour la commande -acc
+ *
+ * \param at Automate d'étude
+ * \param str mot donné
+ *
+ * \return VRAI si le mot est accepté, FAUX sinon
+ */
 bool Accept(const sAutoNDE& at, string str){
     EstDeterministe(at);
     return Accept_rec(at, str, at.initial);
