@@ -1,4 +1,4 @@
-/*!
+/**
  * \file ToGrap.cpp
  * \brief Générateur de fichier GraphViz
  * \author Jayson KACED
