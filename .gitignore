@@ -12,3 +12,5 @@ src/cmake-build-debug/*
 liflf-projet-2017.layout
 liflf-projet-2017.cbp
 liflf-projet-2017.depend
+
+src/Accept.o

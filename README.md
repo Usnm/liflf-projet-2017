@@ -43,6 +43,25 @@ __-equ ou -equivalent Input1 Intput2 :__
 __-nop ou -no_operation Input Output [-g] :__  
 	 ne fait rien, recopie juste l'entrée dans Output  
 __-g :__  
+	 paramètre optionnel pour avoir une sortie au format Graphviz dans Output 
+
+Utilisation du programme ./ndet :
+--------------------------
+__-acc ou -accept Input Word :__  
+	 détermine si le mot Word est accepté par l'automate Input  
+__-det ou -determinize Input Output [-g] :__  
+	 déterminise l'automate Input, écrit le résultat dans Output  
+__-aut2expr ou automate2expressionrationnelle Input :__  
+	 calcule l'expression rationnelle correspondant à l'automate Input et l'affiche sur la sortie standard
+__-min ou -minimisation Input Output [-g] :__  
+	 construit l'automate standard correspondant à Input, écrit le résultat dans Output  
+__-pequ ou -pseudo_equivalent Input1 Intput2 size :__  
+	 détermine si les deux automates Input1 et Input2 sont pseudo-équivalents par comparaison mot par mot de longueur < à size  
+__-equ ou -equivalent Input1 Intput2 :__  
+	 détermine si les deux automates Input1 et Input2 sont équivalents par minimisation et comparaison des tables de transition  
+__-nop ou -no_operation Input Output [-g] :__  
+	 ne fait rien, recopie juste l'entrée dans Output  
+__-g :__  
 	 paramètre optionnel pour avoir une sortie au format Graphviz dans Output  
 
 
