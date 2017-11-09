@@ -14,10 +14,12 @@ bool EstDeterministe(const sAutoNDE& at){
 
     for(int nbe = 0; nbe < at.nb_etats; nbe++){
 
-        if(at.epsilon[nbe].size() != 0 ){
-
-           estDeter = false;
+        if(at.epsilon.size() != 0){
+           if(at.epsilon[nbe].size() != 0 ){
+               estDeter = false;
+            } 
         }
+        
 
     }
 
@@ -111,6 +113,7 @@ bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
                 }
 
             }
+
             set<etat_t>::iterator epk = at.epsilon[position_courante].begin();
             while(epk != at.epsilon[position_courante].end() && !accepter) {
                 etat_t ep_element = *epk;
@@ -120,6 +123,7 @@ bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
 
             i++;
         }
+
     }else{
        for (set<etat_t>::iterator f = at.finaux.begin(); f != at.finaux.end(); f++) {
             etat_t element_final = *f;
