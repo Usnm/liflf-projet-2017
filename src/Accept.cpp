@@ -29,7 +29,7 @@ using namespace std;
 bool EstDeterministe(const sAutoNDE& at){
     bool estDeter = true;
 
-    for(int nbe = 0; nbe < at.nb_etats; nbe++){
+    for(unsigned int nbe = 0; nbe < at.nb_etats; nbe++){
 
         if(at.epsilon.size() != 0){
            if(at.epsilon[nbe].size() != 0 ){
@@ -40,10 +40,10 @@ bool EstDeterministe(const sAutoNDE& at){
 
     }
 
-    for (int i=0; i<at.trans.size(); i++ )
+    for (unsigned int i=0; i<at.trans.size(); i++ )
     {
 
-        for (int j=0; j<at.trans[i].size(); j++ )
+        for (unsigned int j=0; j<at.trans[i].size(); j++ )
         {
 
             if(at.trans[i][j].size() != 1){//On verifie que le nombre de liaisons par etats est egale 1 sinon non deterministe
@@ -106,11 +106,11 @@ etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c){
   etatset_t r;
 
   //STEP 1 : c est-il dans l'alphabet de l'automate d'étude ?
-  int numC = c - ASCII_A; //On récupère la valeur de c pour la comparer à l'alphabet
+  unsigned int numC = c - ASCII_A; //On récupère la valeur de c pour la comparer à l'alphabet
   if(numC > at.nb_etats) { return r; } // C n'est pas dans l'alphabet
 
   //STEP 2 : Où je peux aller avec C si je suis dans les état e
-  for(int i = 0; i < at.trans.size(); i++) {
+  for(unsigned int i = 0; i < at.trans.size(); i++) {
     if(e.find(i) != e.end()) { //On cherche si l'état i est demandé ou non
       if(!at.trans[i][numC].empty()) { //La transition de l'état i avec le symbole c existe
         std::set<etat_t>::iterator itTrans;
@@ -143,7 +143,7 @@ etatset_t Delta(const sAutoNDE& at, const etatset_t& e, symb_t c){
 bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
 
     bool accepter = false;
-    int i=0;
+    unsigned int i=0;
 
     if(str.compare("") != 0){
         while(i<at.trans[position_courante].size() && accepter == false){
@@ -174,7 +174,7 @@ bool Accept_rec(const sAutoNDE& at, string str, int position_courante){
        for (set<etat_t>::iterator f = at.finaux.begin(); f != at.finaux.end(); f++) {
             etat_t element_final = *f;
 
-            if(position_courante == element_final){
+            if((unsigned int)position_courante == element_final){
                 accepter = true;
             }
         }

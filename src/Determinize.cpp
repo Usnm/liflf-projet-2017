@@ -16,12 +16,10 @@ sAutoNDE Determinize(const sAutoNDE& at){
 		etatset_t etat_init = {at.initial};
 		Fermeture(at,etat_init);
 
-		std::string::size_type sz;   // alias de size_t
-
 		std::string sCourant;
 		symb_t symb;
 		std::set<std::string> noeuds;
-		int i=0;
+		unsigned int i=0;
 
 		sCourant = etatsString(creation_nouveau_point(at, etat_init, '\0'));
 		noeuds.insert(sCourant);
@@ -30,7 +28,7 @@ sAutoNDE Determinize(const sAutoNDE& at){
 		do{
 			
 			//parcours des symbols
-			for(int j = 0; j < at.nb_symbs; ++j){
+			for(unsigned int j = 0; j < at.nb_symbs; ++j){
 
 				/*
 				*creation du nouveau noeuds et ajout dans le set de tous les nouveaux noeuds
@@ -55,7 +53,7 @@ sAutoNDE Determinize(const sAutoNDE& at){
 
 		   			std::string noeudsRecherche = *itRecherche;
 		   			if(noeudsRecherche.compare(sCourant) == 0){
-		   				etatset_t monK = {k};
+		   				etatset_t monK = {(long unsigned int )k};
 
 		   				if(i >= r.trans.size()){
 		   					r.trans.resize(i+1);
@@ -96,8 +94,6 @@ void calculEtatFinaux(const sAutoNDE& at, sAutoNDE& r, const std::set<std::strin
 			r.finaux.insert(i);
 			r.nb_finaux +=1;
 		}
-		std::cout << *itFinaux << std::endl;
-
 		i++;
 	}
 
@@ -247,7 +243,7 @@ etatset_t verifEpsilon(const sAutoNDE& at, const etatset_t& all_Pts, const etat_
 
 	
     for(std::set<etat_t>::iterator epk = all_Pts.begin(); epk != all_Pts.end(); epk++){//parcours des points fournis
-    	for (int i = 0; i < at.epsilon.size(); ++i)//parcours des epsilons
+    	for (unsigned int i = 0; i < at.epsilon.size(); ++i)//parcours des epsilons
     	{
     		if(at.epsilon[*epk].find(pts_C ) != at.epsilon[*epk].end()){ //si le points courant est dans le tableau epsilon on le garde
     			isOnEpsilon = true;
