@@ -74,8 +74,12 @@ sAutoNDE Determinize(const sAutoNDE& at){
 		
 		calculEtatFinaux(at, r, noeuds);
 
+		/*r.nb_etats = r.trans.size();
+		r.nb_symbs = at.nb_symbs;*/
+		r.initial = at.initial;
 		r.nb_etats = r.trans.size();
 		r.nb_symbs = at.nb_symbs;
+        	r.nb_finaux = r.finaux.size();
 	}
 
   return r;
@@ -92,7 +96,7 @@ void calculEtatFinaux(const sAutoNDE& at, sAutoNDE& r, const std::set<std::strin
 		etatset_t itF = to_etatset_t(*itFinaux);
 		if(isFinal(at, itF)){
 			r.finaux.insert(i);
-			r.nb_finaux +=1;
+			//r.nb_finaux +=1;
 		}
 		i++;
 	}
