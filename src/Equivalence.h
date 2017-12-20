@@ -11,6 +11,10 @@ std::string Automate2ExpressionRationnelle(sAutoNDE at);
 
 ////////////////////////////////////////////////////////////////////////////////
 
+sAutoNDE ArrangementAutomate(sAutoNDE at);
+
+////////////////////////////////////////////////////////////////////////////////
+
 // détermine la pseudo équivalence par comparaison de tous les mots de Sigma* de longueur < à word_size_max
 bool PseudoEquivalent(const sAutoNDE& a1, const sAutoNDE& a2, unsigned int word_size_max);
 
