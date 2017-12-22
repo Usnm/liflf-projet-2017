@@ -10,8 +10,17 @@
 std::string Automate2ExpressionRationnelle(sAutoNDE at);
 
 ////////////////////////////////////////////////////////////////////////////////
+std::vector<std::set<std::string>>  createTable3D(const sAutoNDE & at);
 
-sAutoNDE ArrangementAutomate(sAutoNDE at);
+std::vector<std::set<std::string>> Rijk(std::vector<std::set<std::string>> & v, unsigned int pointSuppr);
+
+void calculeExpressions(std::vector<std::set<std::string>> & v, std::vector<std::set<std::string>> & rijk, unsigned int pointSuppr);
+
+void insertTable3D(std::vector<std::set<std::string>> & v, std::set<std::string> expr, unsigned int pointSuppr);
+
+std::string verifExpr(std::vector<std::set<std::string>> & rijk, std::string element, std::string condition);
+
+sAutoNDE ArrangementAutomate(const sAutoNDE & at);
 
 ////////////////////////////////////////////////////////////////////////////////
 
