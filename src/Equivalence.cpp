@@ -9,6 +9,8 @@
 #include "Accept.h"
 #include "FA_tools.h"
 
+using namespace std;
+
 ////////////////////////////////////////////////////////////////////////////////
 //pour eviter de la calculer a chaque boucle 
 std::regex reg ("[(]([^ ]*)[)]");//selection de tous ce qu'il y à entre ()
@@ -308,9 +310,67 @@ bool PseudoEquivalent(const sAutoNDE& a1, const sAutoNDE& a2, unsigned int word_
 ////////////////////////////////////////////////////////////////////////////////
 
 bool Equivalent(const sAutoNDE& a1, const sAutoNDE& a2) {
-  //TODO définir cette fonction
+    if(!EstDeterministe(a1) || !EstDeterministe(a2)){
+        cout << "Equivalence : Attention, les automates doivent etre deterministes." << endl;
+        return false;
+    }
 
-  return true;
+    if(a1.nb_symbs != a2.nb_symbs){
+        cout << "Le nombre de symboles est different" << endl;
+        return false;
+    }
+    if(a1.nb_etats != a2.nb_etats){
+        cout << "Le nombre d'etats est different" << endl;
+        return false;
+    }
+    if(a1.nb_finaux != a2.nb_finaux){
+        cout << "Le nombre d'etats finaux est different" << endl;
+        return false;
+    }
+    map<etat_t, etat_t> correspA1, correspA2;
+
+    etatset_t tmpLsEtat; // liste temporaire contenant tous les états à traiter
+    etatset_t tmpLsEtat2;
+    tmpLsEtat.insert(a1.initial);
+    correspA1.insert(pair<etat_t, etat_t>(a1.initial, a2.initial)); // correspondance entre les noms de l'automate 1 à 2
+    correspA2.insert(pair<etat_t, etat_t>(a2.initial, a1.initial)); // correspondance entre les noms de l'automate 2 à 1
+    cout << "Renommage des etats :" << endl;
+    cout << " - etat " << a1.initial << " (initial) --> " << a2.initial << endl;
+    do{
+        tmpLsEtat2.clear();
+        for(etatset_t::iterator it = tmpLsEtat.begin(); it != tmpLsEtat.end(); it++){
+            for(unsigned int sym=0; sym < a1.nb_symbs; sym++){
+                etat_t tmpEtatArrA1 = *(a1.trans[*it][sym].begin());
+                etat_t tmpEtatArrA2 = *(a2.trans[correspA1.find(*it)->second][sym].begin());
+                map<etat_t, etat_t>::iterator res = correspA1.find(tmpEtatArrA1);
+                if(res == correspA1.end()){ // si on est jamais allé dans cet état
+                    // si l'état actuel est déjà connu dans l'automate 2 alors qu'il ne l'ai pas dans l'automate 1
+                    if(correspA2.insert(pair<etat_t, etat_t>(tmpEtatArrA2, tmpEtatArrA1)).second == false){
+                        cout << "Automate 1 : De l'etat " << res->second << " par '" << (char)(ASCII_A+sym) << "' ne correspond pas a l'automate 2." << endl;
+                        return false;
+                    }
+                    cout << " - etat " << tmpEtatArrA1 << " --> " << tmpEtatArrA2 << endl;
+                    correspA1.insert(pair<etat_t, etat_t>(tmpEtatArrA1, tmpEtatArrA2)); // Insert les nouveau états connus
+                    tmpLsEtat2.insert(tmpEtatArrA1);
+                }
+                else{
+                    if(res->second != tmpEtatArrA2){ // si les états ne correspondent pas
+                        cout << "Automate 1 : De l'etat " << res->second << " par '" << (char)(ASCII_A+sym) << "' ne correspond pas a l'automate 2." << endl;
+                        return false;
+                    }
+                }
+            }
+            // compare les états finaux
+            if((a1.finaux.find(*it) != a1.finaux.end()) != (a2.finaux.find(correspA1.find(*it)->second) != a2.finaux.end())){
+                cout << "Les etats finaux de l'automate 1 et l'automate 2 ne sont pas les memes : " << *it << endl;
+                return false;
+            }
+        }
+        tmpLsEtat = tmpLsEtat2;
+    }while(!tmpLsEtat.empty()); // tant qu'on à pas fait tous les états
+    cout << " - Les etats finaux sont les memes" << endl;
+    cout << "\t ==> Les automates sont egaux" << endl;
+    return true;
 }
 
 //******************************************************************************
