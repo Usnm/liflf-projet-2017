@@ -3,8 +3,10 @@
 #include <iostream>
 #include <cassert>
 #include <regex>
+#include <math.h>
 
 #include "Equivalence.h"
+#include "Accept.h"
 #include "FA_tools.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -270,9 +272,37 @@ sAutoNDE ArrangementAutomate(const sAutoNDE & at)
 ////////////////////////////////////////////////////////////////////////////////
 
 bool PseudoEquivalent(const sAutoNDE& a1, const sAutoNDE& a2, unsigned int word_size_max) {
-  //TODO définir cette fonction
+	//TODO définir cette fonction
 
-  return true;
+	std::set<std::string> sigmaEtoile;
+
+	unsigned int nb_symbs = 0;
+	unsigned int nb_lettre_max = word_size_max;
+
+	if(a1.nb_symbs > a2.nb_symbs) { nb_symbs = a1.nb_symbs; }
+	else { nb_symbs = a2.nb_symbs; }
+
+	for(unsigned int nb_lettre = 1 ; nb_lettre <= nb_lettre_max ; ++nb_lettre) {
+		std::string str(nb_lettre,0);
+		unsigned int nb_poss = pow(nb_symbs , nb_lettre);
+
+		for (unsigned int iem_poss = 0; iem_poss < nb_poss; iem_poss++) {
+			int tmp = iem_poss;
+			for (unsigned int i = 0; i < nb_lettre; i ++) {
+				str[i] = (char)tmp%nb_symbs + ASCII_A;
+				tmp = tmp / nb_symbs ;
+			}
+			sigmaEtoile.insert(str);
+		}
+	}
+
+	for (std::set < std::string >::iterator it = sigmaEtoile.begin(); it != sigmaEtoile.end() ; ++it) {
+		std::cout << "mot d'étude : " << *it << std::endl;
+		if( !Accept(a1, *it) ==  Accept(a2, *it))
+			return false;
+	}
+
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
